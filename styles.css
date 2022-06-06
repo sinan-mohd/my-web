@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: hsl(198, 18%, 43%);
+  --white: hsl(0, 0%, 100%);
+  --logo_font: "Caveat", cursive;
+}
+body {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: min(100%, 1000px);
+  margin-inline: auto;
+  padding-inline: 25px;
+}
+
+main .container {
+  height: 100vh;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+
+main .container .header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main .container .header .logo {
+  text-transform: capitalize;
+  font-size: 5rem;
+  font-family: var(--logo_font);
+  color: var(--primary);
+}
+main .container .header .social {
+  font-size: 1.875rem;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 2.1875rem;
+}
+main .container .header .social a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+main .container .hero {
+  height: calc(100vh - 200px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+main .container .hero > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .container .hero .content h1 {
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+main .container .hero .content h1 .name {
+  font-family: var(--logo_font);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+main .container .hero .content p {
+  width: min(100%, 400px);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+main .container .hero .content button {
+  width: 180px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  border: none;
+  outline: none;
+  background-color: var(--primary);
+  font-size: 18px;
+  color: var(--white);
+  border-radius: 50px;
+  cursor: pointer;
+}
+main .container .hero .image img {
+  width: 90%;
+}
+
+main .container .player {
+  width: 100%;
+  height: 90px;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  animation: up 1s ease-in forwards;
+  animation-play-state: paused;
+}
+body.play .container .player {
+  animation-play-state: running;
+}
+main .container .player > div {
+  width: min(600px, 100%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+#album_cover {
+  width: 60px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  animation: scale 1s infinite alternate;
+  transform-origin: center;
+  animation-play-state: paused;
+}
+
+body.play #album_cover {
+  animation-play-state: running;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px var(--white);
+  }
+}
+#album_cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#music_info {
+  width: 100%;
+  height: 100%;
+  color: var(--white);
+}
+#song_name {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+#progress_bar {
+  width: 100%;
+  height: 1px;
+  border-radius: 50px;
+  background-color: rgba(52, 52, 52, 0.5);
+  margin-bottom: 10px;
+  position: relative;
+}
+#progress {
+  width: 0%;
+  height: inherit;
+  background-color: var(--white);
+  position: relative;
+  cursor: pointer;
+  transition: width ease-in;
+}
+#progress::after {
+  content: "";
+  display: block;
+  background-color: var(--white);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 0;
+  top: -5px;
+  border-radius: 50%;
+}
+#current_time,
+#duration_time {
+  display: inline-block;
+  font-size: 10px;
+  position: absolute;
+  top: calc(100% + 5px);
+}
+#current_time {
+  left: 0;
+}
+#duration_time {
+  right: 0;
+}
+.player .controls {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 10px;
+}
+.player .controls > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  font-size: 14px;
+  background-color: #4b6773;
+  color: var(--white);
+  cursor: pointer;
+}
+
+#play {
+  font-size: 18px;
+}
+@keyframes up {
+  0% {
+    transform: translateY(calc(100% + 10px));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 550px) {
+  @keyframes up {
+    0% {
+      transform: translateY(calc(100% + 30px));
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  main .container .header {
+    height: 80px;
+  }
+  main .container .header .logo {
+    font-size: 50px;
+  }
+  main .container .header .social {
+    font-size: 20px;
+    transform: translateY(5px);
+  }
+  main .container .hero {
+    grid-template-columns: 1fr;
+  }
+  main .container .hero .content {
+    grid-row-start: 2;
+    text-align: center;
+    align-self: flex-start;
+  }
+  main .container .hero .content p {
+    margin-inline: auto;
+  }
+  main .container .image img {
+    width: 100%;
+  }
+  main .container .image {
+    width: max(150px, 75%);
+    grid-row-start: 1;
+    margin-inline: auto;
+  }
+  main .container .hero .content button {
+    width: 170px;
+    height: 45px;
+    font-size: 1rem;
+    margin-inline: auto;
+  }
+}
